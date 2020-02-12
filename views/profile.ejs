@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+<body style="background-image: url(https://wallpaperaccess.com/full/104008.jpg); background-repeat: no-repeat; background-size: cover;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2 px-0">
+                <ul class="list-group">
+                    <a href="/auth/admin-profile" class="list-group-item list-group-item-action list-group-item-warning active">Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><span>Patner</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
+                    <span class="collapse" id="collapseExample">
+                        <a href="/auth/admin-patnerRegistration" class="list-group-item list-group-item-action list-group-item-warning">Patner Registration</a>
+                        <a href="/auth/admin-patnerDeletion" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Patner Deletion</a>
+                    </span>
+                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"><span>Auditor</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
+                    <span class="collapse" id="collapseExample1">
+                        <a href="/auth/admin-auditorRegistration" class="list-group-item list-group-item-action list-group-item-warning" >Auditor Registration</a>
+                        <a href="/auth/admin-auditorDeletion" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Auditor Deletion</a>
+                    </span> 
+                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2"><span>Rights</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
+                    <span class="collapse" id="collapseExample2">
+                        <a href="/auth/admin-rightAllocation1" class="list-group-item list-group-item-action list-group-item-warning">Rights Allocation</a>
+                        <a href="/auth/admin-rightRevoke1" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Rights Revoke</a>
+                    </span> 
+                </ul>
+            </div>
+            <div class="col-10 d-flex justify-content-center">
+                <div class="card mb-1 text-light border-0" style="width: 90%; background-image: url(https://i.pinimg.com/originals/48/8f/45/488f4521a7ba89102cc3c635343d4db8.jpg); background-repeat: no-repeat; background-size: cover;">
+                    <h1 class="card-title text-center mt-2">Alumni profile</h1>
+                    <img src="<%= currentUser.image %>" class="card-img-top rounded-circle mx-auto my-3" style="width: 50%;">
+                    <hr>
+                    <div class="card-body container" style="width: 60%;">
+                        <div class="row">
+                            <div class="col-2"><h1><i class="fas fa-id-card"></i></h1></div>
+                            <div class="col-10">
+                                <div><b><%= currentUser.email %></b></div>
+                                <div><em>Email</em></div>      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body container" style="width: 60%;">
+                        <div class="row">
+                            <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
+                            <div class="col-10">
+                                <div><b><%= currentUser.name %></b></div>
+                                <div><em>Name</em></div>      
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/auth/logout" class="btn btn-danger mx-auto mb-2">logout</a>
+                </div>
+            </div>
+        </div>      
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(".fa-caret-up").hide();
+        $(".popdown").click(function(){
+            $(this).find(".fa-sort-down").toggle();
+            $(this).find(".fa-caret-up").toggle();
+        });
+    </script>
+</body>
+</html>
