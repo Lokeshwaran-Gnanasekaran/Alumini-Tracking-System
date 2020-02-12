@@ -24,6 +24,26 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req,res,next)=>{
+    res.locals.currentUser  =  req.user;
+    res.locals.logError     =  req.flash("logError");
+    res.locals.regError     =  req.flash("regError");
+    res.locals.success      =  req.flash("success");
+    next();
+});
+
 app.get("/profile",function(req,res){
     res.render("profile");
 })
+
+router.post("/register",passport.authenticate("local-register",{
+    successFlash : true,
+    successRedirect : "back",
+    failureFlash : true,
+    failureRedirect : "back"
+}))
+
+app.get("/logout",function(req,res){
+    req.logout();
+})
+app.listen(2000)
