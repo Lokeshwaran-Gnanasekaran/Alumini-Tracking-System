@@ -6,6 +6,7 @@ var passport = require("passport");
 var session = require('express-session');
 var flash = require('req-flash');
 var mang = require("mongoose");
+var user  = require("./model/usermodel");
 var passportConfig = require("./config");
 passportConfig(passport);
 app.use(exp.static("public"));
@@ -23,6 +24,20 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.get("/",function(req,res){
+    res.render("landing");
+})
+
+app.get("/register",function(req,res){
+    res.render("register");
+})
+app.post("/register",function(req,res){
+    
+     }),function(err,createdUser){
+         console.log(createdUser);
+
+     }
+})
 
 app.get("/profile",function(req,res){
     res.render("profile");
