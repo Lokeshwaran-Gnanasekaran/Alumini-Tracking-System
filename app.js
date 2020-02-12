@@ -33,11 +33,37 @@ app.get("/register",function(req,res){
 })
 app.post("/register",function(req,res){
     
-     }),function(err,createdUser){
+     function(err,createdUser){
          console.log(createdUser);
 
      }
 })
+app.get("/login",function(req,res)
+{
+    res.render("login")
+
+})
+app.post("/login",loggedIn,passport.authenticate("local",{
+    successRedirect:"/profile",
+    failureRedirect:"/login"
+}),function(req,res)
+{
+
+})
+app.get("/logout",function(req,res)
+{
+    req.logout();
+    res.redirect("/");
+})
+function loggedIn(req,res,next)
+{
+    if(req.isAuthenticated())
+    {
+        return next();
+    }
+    res.redirect("/login")
+}
+
 
 app.get("/profile",function(req,res){
     res.render("profile");
