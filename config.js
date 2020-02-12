@@ -1,6 +1,7 @@
 const localStrategy = require("passport-local");
 const mongoose = require("mongoose");
 const User = require("./models/usermodel");
+const company=require("./model/company");
 var getUserByUsername = async function(username){
     var user1;
     await User.findOne({username:username}, function(err, user){
@@ -79,9 +80,28 @@ var initialize = function(passport){
         if(req.body.password === req.body.repassword){
             bcrypt.hash(password, 10, function(err, hash) {
                 if(!err){
-                    User.create({username: username, email : req.body.email , password : hash},function(err,user1){
+                    User.create({username: username, email : req.body.email , password : hash,
+                        dob:req.body.dob,
+                        address:req.body.dob,
+                        bio:req.body.bio,
+                        interest:req.body.interest,
+                        img_url:req.body.img_url,
+                        contact:req.body.contact,
+                        jobs:{
+                            company_name:req.body.company,
+                            position:req.body.position,
+                            start:req.body.start,
+                            current:req.body.current,
+                            salary:req.body.salary,
+                            jobrole:req.body.jobrole
+                        }
+                    },function(err,user1){
                         if(!err){
-                           return done( null, user1, req.flash("success","Welcome to YelpCamp " + username))
+                            company.create({
+                                company_name:req.body.
+                            })
+                           return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
+                           
                         }
                     })
                 }
