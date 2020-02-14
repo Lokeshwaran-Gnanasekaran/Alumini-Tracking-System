@@ -30,11 +30,17 @@ app.get("/",function(req,res){
 
 app.get("/register",function(req,res){
     res.render("register");
+
+})
+app.get("/profile",function(req,res){
+    if(req.user.group==="alumni")
+        res.redirect("/alumni/profile")
+    else if(req.user.group==="admin")
+         res.redirect("/admin/profile")    
 })
 app.post("/register",function(req,res){
     
-     function(err,createdUser){
-         console.log(createdUser);
+     
 
      }
 })
@@ -43,12 +49,18 @@ app.get("/login",function(req,res)
     res.render("login")
 
 })
-app.post("/login",loggedIn,passport.authenticate("local",{
+app.post("/login",loggedIn,passport.authenticate("local-login",{
     successRedirect:"/profile",
-    failureRedirect:"/login"
+    failureRedirect:"back"
 }),function(req,res)
 {
 
+})
+app.get("/alumni/profile",function(req,res){
+    res.render("alumni/profile",{user:req.user});
+})
+app.get("/admin/profile",function(req,res){
+    res.render("admin/profile")
 })
 app.get("/logout",function(req,res)
 {
@@ -65,6 +77,3 @@ function loggedIn(req,res,next)
 }
 
 
-app.get("/profile",function(req,res){
-    res.render("profile");
-})

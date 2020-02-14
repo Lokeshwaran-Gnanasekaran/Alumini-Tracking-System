@@ -97,9 +97,7 @@ var initialize = function(passport){
                         }
                     },function(err,user1){
                         if(!err){
-                            company.create({
-                                company_name:req.body.
-                            })
+
                            return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
                            
                         }
