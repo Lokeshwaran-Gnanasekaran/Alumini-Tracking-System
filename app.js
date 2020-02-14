@@ -6,7 +6,7 @@ var passport = require("passport");
 var session = require('express-session');
 var flash = require('req-flash');
 var mang = require("mongoose");
-var user  = require("./model/usermodel");
+var user  = require("./models/usermodel");
 var passportConfig = require("./config");
 passportConfig(passport);
 app.use(exp.static("public"));
@@ -24,20 +24,11 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.get("/",function(req,res){
-    res.render("landing");
-})
+// app.get("/",function(req,res){
+//     res.render("landing");
+// })
 
-app.get("/register",function(req,res){
-    res.render("register");
-})
-app.post("/register",function(req,res){
-    
-     }),function(err,createdUser){
-         console.log(createdUser);
 
-     }
-})
 
 app.use((req,res,next)=>{
     res.locals.currentUser  =  req.user;
@@ -47,13 +38,18 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get("/register",function(req,res){
+    console.log(req.flash("regError"));
+    res.render("register");
+})
+
 app.get("/profile",function(req,res){
     res.render("profile");
 })
 
-router.post("/register",passport.authenticate("local-register",{
+app.post("/register",passport.authenticate("local-register",{
     successFlash : true,
-    successRedirect : "back",
+    successRedirect : "/profile",
     failureFlash : true,
     failureRedirect : "back"
 }))

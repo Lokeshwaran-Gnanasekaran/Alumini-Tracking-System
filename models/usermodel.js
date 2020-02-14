@@ -12,6 +12,7 @@ const UserSchema=mongoose.Schema({
     jobs:{
         jobrole:String,
         company_name:String,
+        company_url:String,
         position:String,
         Start:String,
         current:String,

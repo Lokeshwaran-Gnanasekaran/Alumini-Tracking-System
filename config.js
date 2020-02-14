@@ -1,8 +1,9 @@
 const localStrategy = require("passport-local");
 const mongoose = require("mongoose");
 const User = require("./models/usermodel");
-const company=require("./model/company");
-var getUserByUsername = async function(username){
+const emailExistence = require("email-existence");
+var bcrypt = require("bcrypt");
+var getUserbyUsername = async function(username){
     var user1;
     await User.findOne({username:username}, function(err, user){
         if(!err)
@@ -42,8 +43,8 @@ var getUserbyContact = async function(contact){
     return user1;
 }
 var initialize = function(passport){
-    var authenticateUserLogin = async function(req, email, password, done){
-        
+    console.log("ooo");
+    var authenticateUserLogin = async function(req, email, password, done){     
         var user = await getUserbyEmail(email);
         if(!user){
             return done(null, false, req.flash("logError","Email not registered"));
@@ -58,9 +59,11 @@ var initialize = function(passport){
             return done(null, false, req.flash("logError","Password incorrect"));
         });
     }
-    var authenticateUserRegister = async function(req,username, password, done){   
-        emailExistence.check(req.body.email, function(error, response){
-            if(response){
+    var authenticateUserRegister = async function(req, username, password, done){  
+        console.log ("mang");
+        await emailExistence.check(req.body.email, function(error, response){
+            if(!response){
+                console.log("lll")
                 return done(null, false, req.flash("regError","Email doesn't exists"));
             }
         });     
@@ -88,7 +91,8 @@ var initialize = function(passport){
                         img_url:req.body.img_url,
                         contact:req.body.contact,
                         jobs:{
-                            company_name:req.body.company,
+                            company_name:req.body.company_name,
+                            company_url:req.body.company_url,
                             position:req.body.position,
                             start:req.body.start,
                             current:req.body.current,
@@ -97,9 +101,6 @@ var initialize = function(passport){
                         }
                     },function(err,user1){
                         if(!err){
-                            company.create({
-                                company_name:req.body.
-                            })
                            return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
                            
                         }
@@ -120,13 +121,16 @@ var initialize = function(passport){
     },
     authenticateUserLogin));
     passport.use("local-register", new localStrategy({
+        usernameField : "name",
         passReqToCallback : true },
     authenticateUserRegister));
     passport.serializeUser(function(user,done){
+        console.log(user + "lll");
         done(null, user._id);
     })
     passport.deserializeUser(async function(id,done){
-        done(null, await getUserbyId(id));
+        console.log(id + "pp");
+        done(null, await getUserbyId(id))
     })
 }
 
