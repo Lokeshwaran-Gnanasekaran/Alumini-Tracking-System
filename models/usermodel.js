@@ -6,6 +6,7 @@ const UserSchema=mongoose.Schema({
     dob:String,
     address:String,
     interest:String,
+    group:String,
     bio:String,
     img_url:String,
     contact:String,
@@ -13,9 +14,12 @@ const UserSchema=mongoose.Schema({
         jobrole:String,
         company_name:String,
         company_url:String,
+        company_address:String,
+        logo_url:String,
         position:String,
         Start:String,
         current:String,
+        currentprodetails:String,
         salary:String,
     }
 

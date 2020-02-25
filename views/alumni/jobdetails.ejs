@@ -9,18 +9,19 @@
     <title>Document</title>
 </head>
 <body style="background-image: url(https://wallpaperaccess.com/full/104008.jpg); background-repeat: no-repeat; background-size: cover;">
-    
+    <div class="container mt-5">
+        <div class="row">
             <div class="col-10 d-flex justify-content-center">
                 <div class="card mb-1 text-light border-0" style="width: 90%; background-image: url(https://i.pinimg.com/originals/48/8f/45/488f4521a7ba89102cc3c635343d4db8.jpg); background-repeat: no-repeat; background-size: cover;">
-                    <h1 class="card-title text-center mt-2">Admin profile</h1>
-                    <img src="<%= user.img_url %>" class="card-img-top rounded-circle mx-auto my-3" style="width: 50%;">
+                    <h1 class="card-title text-center mt-2">Job And Company Details</h1>
+                    <img src="<%= user.jobs.logo_url %>" class="card-img-top rounded-circle mx-auto my-3" style="width: 50%;">
                     <hr>
                     <div class="card-body container" style="width: 60%;">
                         <div class="row">
                             <div class="col-2"><h1><i class="fas fa-id-card"></i></h1></div>
                             <div class="col-10">
-                                <div><b><%= user.email %></b></div>
-                                <div><em>Email</em></div>      *
+                                <div><b><%= currentUser.jobs.company_name %></b></div>
+                                <div><em>Company Name</em></div>      
                             </div>
                         </div>
                     </div>
@@ -28,8 +29,8 @@
                         <div class="row">
                             <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
                             <div class="col-10">
-                                <div><b><%=user.username %></b></div>
-                                <div><em>Name</em></div>      
+                                <div><b><%=user.jobs.company_address %></b></div>
+                                <div><em>Company Address</em></div>      
                             </div>
                         </div>
                     </div>
@@ -37,8 +38,8 @@
                         <div class="row">
                             <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
                             <div class="col-10">
-                                <div><b><%=user.dob %></b></div>
-                                <div><em>Date Of Birth</em></div>      
+                                <div><b><%=user.jobs.company_url %></b></div>
+                                <div><em>Check out The Company Details</em></div>      
                             </div>
                         </div>
                     </div>
@@ -46,18 +47,8 @@
                         <div class="row">
                             <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
                             <div class="col-10">
-                                <div><b><%= user.address %></b></div>
-                                <div><em>Address</em></div>      
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-body container" style="width: 60%;">
-                        <div class="row">
-                            <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
-                            <div class="col-10">
-                                <div><b><%= user.bio %></b></div>
-                                <div><em>Bio</em></div>      
+                                <div><b><%= user.jobs.position%></b></div>
+                                <div><em>Your Position</em></div>      
                             </div>
                         </div>
                     </div>
@@ -65,12 +56,39 @@
                         <div class="row">
                             <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
                             <div class="col-10">
-                                <div><b><%= user.contact %></b></div>
-                                <div><em>Contact</em></div>      
+                                <div><b><%= user.jobs.start %></b></div>
+                                <div><em>Date Of Join</em></div>      
                             </div>
                         </div>
                     </div>
-                    <a href=/logout" class="btn btn-danger mx-auto mb-2">logout</a>
+                    <div class="card-body container" style="width: 60%;">
+                        <div class="row">
+                            <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
+                            <div class="col-10">
+                                <div><b><%= user.jobs.current %></b></div>
+                                <div><em>Current Project</em></div>      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body container" style="width: 60%;">
+                        <div class="row">
+                            <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
+                            <div class="col-10">
+                                <div><b><%= user.jobs.currentprodetails %></b></div>
+                                <div><em>Current Project Details</em></div>      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body container" style="width: 60%;">
+                        <div class="row">
+                            <div class="col-2"><h1><i class="fas fa-user-tie"></i></h1></div>
+                            <div class="col-10">
+                                <div><b><%= user.jobs.salary %></b></div>
+                                <div><em>Salary</em></div>      
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/logout" class="btn btn-danger mx-auto mb-2">logout</a>
                 </div>
             </div>
         </div>      

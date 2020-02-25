@@ -9,28 +9,12 @@
     <title>Document</title>
 </head>
 <body style="background-image: url(https://wallpaperaccess.com/full/104008.jpg); background-repeat: no-repeat; background-size: cover;">
+    <nav class="nav navbar-default">
+        <li><a href="/alumni/jobdetails">Job Details</a></li>
+        <li><a href="/alumni/profile" class="active">Profile</a></li>
+    </nav>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-2 px-0">
-                <ul class="list-group">
-                    <a href="/auth/admin-profile" class="list-group-item list-group-item-action list-group-item-warning active">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><span>Patner</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
-                    <span class="collapse" id="collapseExample">
-                        <a href="/auth/admin-patnerRegistration" class="list-group-item list-group-item-action list-group-item-warning">Patner Registration</a>
-                        <a href="/auth/admin-patnerDeletion" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Patner Deletion</a>
-                    </span>
-                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"><span>Auditor</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
-                    <span class="collapse" id="collapseExample1">
-                        <a href="/auth/admin-auditorRegistration" class="list-group-item list-group-item-action list-group-item-warning" >Auditor Registration</a>
-                        <a href="/auth/admin-auditorDeletion" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Auditor Deletion</a>
-                    </span> 
-                    <a class="list-group-item list-group-item-action list-group-item-warning d-flex justify-content-between popdown" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2"><span>Rights</span><span><i class="fas fa-sort-down"></i><i class="fas fa-caret-up"></i></span></a>
-                    <span class="collapse" id="collapseExample2">
-                        <a href="/auth/admin-rightAllocation1" class="list-group-item list-group-item-action list-group-item-warning">Rights Allocation</a>
-                        <a href="/auth/admin-rightRevoke1" class="list-group-item list-group-item-action list-group-item-warning alert my-0">Rights Revoke</a>
-                    </span> 
-                </ul>
-            </div>
             <div class="col-10 d-flex justify-content-center">
                 <div class="card mb-1 text-light border-0" style="width: 90%; background-image: url(https://i.pinimg.com/originals/48/8f/45/488f4521a7ba89102cc3c635343d4db8.jpg); background-repeat: no-repeat; background-size: cover;">
                     <h1 class="card-title text-center mt-2">Alumni profile</h1>
@@ -99,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/auth/logout" class="btn btn-danger mx-auto mb-2">logout</a>
+                    <a href="/logout" class="btn btn-danger mx-auto mb-2">logout</a>
                 </div>
             </div>
         </div>      

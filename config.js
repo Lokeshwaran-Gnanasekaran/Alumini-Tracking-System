@@ -20,7 +20,7 @@ var getUserbyId = async function(id){
             user1 = user;
         }
     })
-    console.log(user1);
+    console.log(user1 + " user1");
     return user1;
 }
 var getUserbyEmail = async function(email){
@@ -33,7 +33,7 @@ var getUserbyEmail = async function(email){
     return user1;
 }
 var getUserbyContact = async function(contact){
-    var user1;
+    let user1;
     await User.findOne({contact:contact},function(err,user){
         if(!err){
             user1 = user;
@@ -83,28 +83,50 @@ var initialize = function(passport){
         if(req.body.password === req.body.repassword){
             bcrypt.hash(password, 10, function(err, hash) {
                 if(!err){
-                    User.create({username: username, email : req.body.email , password : hash,
-                        dob:req.body.dob,
-                        address:req.body.dob,
-                        bio:req.body.bio,
-                        interest:req.body.interest,
-                        img_url:req.body.img_url,
-                        contact:req.body.contact,
-                        jobs:{
-                            company_name:req.body.company_name,
-                            company_url:req.body.company_url,
-                            position:req.body.position,
-                            start:req.body.start,
-                            current:req.body.current,
-                            salary:req.body.salary,
-                            jobrole:req.body.jobrole
-                        }
-                    },function(err,user1){
-                        if(!err){
-                           return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
-                           
-                        }
-                    })
+                    if(req.body.company_name){
+                        User.create({username: username, email : req.body.email , password : hash,
+                            dob:req.body.dob,
+                            address:req.body.dob,
+                            bio:req.body.bio,
+                            interest:req.body.interest,
+                            group:"Alumni",
+                            img_url:req.body.img_url,
+                            contact:req.body.contact,
+                            jobs:{
+                                company_name:req.body.company_name,
+                                company_url:req.body.company_url,
+                                company_address:req.body.address1,
+                                logo_url:req.body.logo_url,
+                                position:req.body.position,
+                                start:req.body.start,
+                                current:req.body.current,
+                                currentprodetails:req.body.currentpro,
+                                salary:req.body.salary,
+                                jobrole:req.body.jobrole
+                            }
+                        },function(err,user1){
+                            if(!err){
+                               return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
+                               
+                            }
+                        })
+                    }
+                    else {
+                        User.create({username: username, email : req.body.email , password : hash,
+                            dob:req.body.dob,
+                            address:req.body.dob,
+                            bio:req.body.bio,
+                            interest:req.body.interest,
+                            group:"Admin",
+                            img_url:req.body.img_url,
+                            contact:req.body.contact
+                        },function(err,user1){
+                            if(!err){
+                               return done( null, user1, req.flash("success","Welcome to YelpCamp " + username));
+                               
+                            }
+                        })
+                    }
                 }
                 else{
                     return done(err);
@@ -130,7 +152,9 @@ var initialize = function(passport){
     })
     passport.deserializeUser(async function(id,done){
         console.log(id + "pp");
-        done(null, await getUserbyId(id))
+        User.findById(id,function(err,foundUser){
+            done(null, foundUser);
+        }) 
     })
 }
 

@@ -37,26 +37,33 @@ app.use((req,res,next)=>{
     res.locals.success      =  req.flash("success");
     next();
 });
-
-app.get("/register",function(req,res){
-    console.log(req.flash("regError"));
-    res.render("register");
+app.get("/",function(req,res){
+    res.render("landing");
+})
+app.get("/alumni/register",function(req,res){
+     //console.log(req.flash("regError"));
+     res.render("alumni/register");
+    // if(req.user.group==="Alumni")
+    //     res.render("/alumni/profile");
+    // else if(req.user.group==="Admin")
+    //     res.render("admin/profile");    
 
 })
-app.get("/profile",function(req,res){
-    if(req.user.group==="alumni")
-        res.redirect("/alumni/profile")
-    else if(req.user.group==="admin")
-         res.redirect("/admin/profile")    
+app.get("/admin/register",function(req,res){
+    res.render("admin/register");
 })
+// app.get("/profile",function(req,res){
+//      if(req.user.group==="alumni")
+//          res.redirect("/alumni/profile")
+//      else if(req.user.group==="admin")
+//          res.redirect("/admin/profile")    
+// })
 
-app.get("/profile",function(req,res){
-    res.render("profile");
-})
+
 
 app.post("/register",passport.authenticate("local-register",{
     successFlash : true,
-    successRedirect : "/profile",
+    successRedirect : "/alumni/profile",
     failureFlash : true,
     failureRedirect : "back"
 }))
@@ -73,15 +80,15 @@ app.get("/login",function(req,res)
 app.post("/login",loggedIn,passport.authenticate("local-login",{
     successRedirect:"/profile",
     failureRedirect:"back"
-}),function(req,res)
-{
-
-})
+}))
 app.get("/alumni/profile",function(req,res){
     res.render("alumni/profile",{user:req.user});
 })
 app.get("/admin/profile",function(req,res){
-    res.render("admin/profile")
+    res.render("admin/profile",{user:req.user})
+})
+app.get("/alumni/jobdetails",function(req,res){
+    res.render("alumni/jobdetails",{user:req.user});
 })
 app.get("/logout",function(req,res)
 {
